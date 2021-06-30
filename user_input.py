@@ -16,10 +16,11 @@ additional_deposit_check = "y"
 while additional_deposit_check == "y":
     
     key = input("Enter the deposit date in the format YYYY-MM: ")
-    value = int(input("Enter the amount depositied in GBP: "))
+    value = int(input("Enter the amount deposited in GBP: "))
 
     deposits[key]= value
 
+    print("Your deposit history so far is:")
     print(deposits)
 
     additional_deposit_check = input("Do you want to track additional deposits? Y/n: ").lower()
