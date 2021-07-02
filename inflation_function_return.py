@@ -37,7 +37,11 @@ for ind in deposit_df.index:
 
 final_total = round(list(deposit_df["adjusted_total"])[-1],2)
 deposit_total = sum(deposit_df["deposits"])
+inflation_tax = round(deposit_total-final_total,2)
+inflation_percentage = round(((deposit_total-final_total)/deposit_total)*100,2)
+pp_total = round(deposit_total/(1-(inflation_percentage/100)),2)
 
 print("Your total deposits were: ", str(deposit_total)," GBP")
 print("If held as cash, today your deposits would be worth: ", str(final_total)," GBP")
-print("Your inflation tax amounts to: ", str(round(deposit_total-final_total,2)), " GBP or ", str(round(((deposit_total-final_total)/deposit_total)*100,2)),"%")
+print("Your inflation tax amounts to: ", str(inflation_tax), " GBP or ", str(inflation_percentage),"%")
+print("To retain your purchasing power you would need to hold: ", str(pp_total)," GBP")
