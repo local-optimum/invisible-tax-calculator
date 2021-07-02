@@ -33,7 +33,5 @@ while additional_deposit_check == "y":
 date_list = list(deposits.keys())
 earliest_date = sorted(date_list)[0]
 
-print(earliest_date)
-
 start_time =earliest_date
 end_time =today_time
