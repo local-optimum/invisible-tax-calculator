@@ -36,6 +36,8 @@ for ind in deposit_df.index:
 #return final total
 
 final_total = round(list(deposit_df["adjusted_total"])[-1],2)
+deposit_total = sum(deposit_df["deposits"])
 
-print("Today, your deposits would be worth: ", str(final_total)," GBP")
-print("If held as cash")
+print("Your total deposits were: ", str(deposit_total)," GBP")
+print("If held as cash, today your deposits would be worth: ", str(final_total)," GBP")
+print("Your inflation tax amounts to: ", str(round(deposit_total-final_total,2)), " GBP")
