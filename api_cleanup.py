@@ -17,7 +17,7 @@ from user_input import *
 today_time = date.today().strftime("%Y-%m")
 measure_param="GP"
 
-#function for analysing api query
+#function for analysing api query, used for debugging
 def jprint(obj):
     # create a formatted string of the Python JSON object
     text = json.dumps(obj, sort_keys=True, indent=4)
