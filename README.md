@@ -9,6 +9,7 @@ The output consists of:
 * The current value of this amount if held as cash
 * The total and percentage decrease in value
 * How much cash you would need to hold to retain your purchasing power
+
 You can optionally export the full table to csv for your own analysis or reference (eg to make a graph of value over time).
 
 ## Why did I make it?
@@ -25,5 +26,6 @@ It requires only a few basic libraries to run:
 * Requests
 * Json
 * Datetime
+
 The data is pulled from this OECD site
 https://stats.oecd.org/Index.aspx?DataSetCode=PRICES_CPI#
