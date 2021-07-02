@@ -26,4 +26,4 @@ It requires only a few basic libraries to run:
 * Json
 * Datetime
 The data is pulled from this OECD site
-https://stats.oecd.org/restsdmx/sdmx.ashx/GetDataStructure/PRICES_CPI
+https://stats.oecd.org/Index.aspx?DataSetCode=PRICES_CPI#
