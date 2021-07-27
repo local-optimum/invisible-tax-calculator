@@ -1,7 +1,11 @@
 import pandas as pd
 
-#functionas
+#functions
+
 def depcheck(df,dict):
+    """Function that takes a data frame and a dictionary 
+    and uses the key of the dictionary to add values into 
+    the dataframe at the matching index"""
     for key in dict:
         df.loc[key,"deposits"] = dict[key]
     return df
@@ -18,20 +22,26 @@ from user_input import deposits
 
 
 #add column of deposits and corresponding to date rows
-monthly_infl_percentage["deposits"] = [0 for i in range(len(monthly_infl_percentage))]
+monthly_infl_percentage["deposits"] = 0
+
+#to track running total of desposits to create a graph
+monthly_infl_percentage["running_deposit_total"]=0
 
 
 deposit_df = depcheck(monthly_infl_percentage,deposits)
 deposit_df.reset_index(inplace = True)
 
 #calculcate running total column of desposits adjusted by inflation, adding new deposits but not adjusting them when deposited
-deposit_df["adjusted_total"] = [0 for i in range(len(deposit_df))]
+deposit_df["adjusted_total"] = 0
 
 for ind in deposit_df.index:
     if ind == 0:
         deposit_df.loc[ind, "adjusted_total"] = deposit_df.loc[ind,"deposits"]
+        deposit_df.loc[ind, "running_deposit_total"] = deposit_df.loc[ind,"deposits"]
     else:
-        deposit_df.loc[ind, "adjusted_total"] = (100/(deposit_df.loc[ind,"inflation_percentage_change"]+100)*deposit_df.loc[ind-1,"adjusted_total"])+deposit_df.loc[ind,"deposits"]
+        deposit_df.loc[ind, "adjusted_total"] = round((100/(deposit_df.loc[ind,"inflation_percentage_change"]+100)*deposit_df.loc[ind-1,"adjusted_total"])+deposit_df.loc[ind,"deposits"],2)
+        deposit_df.loc[ind, "running_deposit_total"] = deposit_df.loc[ind-1, "running_deposit_total"]+deposit_df.loc[ind,"deposits"]
+print("Desposit history table generated...")
 
 #return final total
 
@@ -41,7 +51,7 @@ inflation_tax = round(deposit_total-final_total,2)
 inflation_percentage = round(((deposit_total-final_total)/deposit_total)*100,2)
 pp_total = round(deposit_total/(1-(inflation_percentage/100)),2)
 
-print("Your total deposits were: ", str(deposit_total)," GBP")
+print("\n\nYour total deposits were: ", str(deposit_total)," GBP")
 print("If held as cash, today your deposits would be worth: ", str(final_total)," GBP")
 print("Your inflation tax amounts to: ", str(inflation_tax), " GBP or ", str(inflation_percentage),"%")
 print("To retain your purchasing power you would need to hold: ", str(pp_total)," GBP")

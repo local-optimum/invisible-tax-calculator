@@ -31,6 +31,9 @@ parameters = {
 
 }
 
+
+print("Querying API...")
+
 #get api
 response = requests.get("https://stats.oecd.org/SDMX-JSON/data/PRICES_CPI/GBR.CPALTT01.GP.M/all", params=parameters)
 
@@ -40,6 +43,8 @@ inf_obj = response.json()["dataSets"][0]["series"]["0:0:0:0"]["observations"]
 inf_list = list(inf_obj.values())
 
 inf_stats = [d[0] for d in inf_list]
+
+print("Data retrieved...")
 
 #select matching dates from the dataset & convert into list
 date_obj = response.json()["structure"]["dimensions"]["observation"][0]["values"]
