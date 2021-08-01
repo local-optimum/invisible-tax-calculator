@@ -26,8 +26,10 @@ monthly_infl_percentage["deposits"] = 0
 
 #to track running total of desposits to create a graph
 monthly_infl_percentage["running_deposit_total"]=0
+monthly_infl_percentage["inflation_compound_percentage_increase"]=0
 
 
+#insert deposit amounts at the corresponding date
 deposit_df = depcheck(monthly_infl_percentage,deposits)
 deposit_df.reset_index(inplace = True)
 
@@ -38,9 +40,11 @@ for ind in deposit_df.index:
     if ind == 0:
         deposit_df.loc[ind, "adjusted_total"] = deposit_df.loc[ind,"deposits"]
         deposit_df.loc[ind, "running_deposit_total"] = deposit_df.loc[ind,"deposits"]
+        deposit_df.loc[ind, "inflation_compound_percentage_increase"] = 0
     else:
         deposit_df.loc[ind, "adjusted_total"] = round((100/(deposit_df.loc[ind,"inflation_percentage_change"]+100)*deposit_df.loc[ind-1,"adjusted_total"])+deposit_df.loc[ind,"deposits"],2)
         deposit_df.loc[ind, "running_deposit_total"] = deposit_df.loc[ind-1, "running_deposit_total"]+deposit_df.loc[ind,"deposits"]
+        deposit_df.loc[ind, "inflation_compound_percentage_increase"] = round((100+deposit_df.loc[ind-1, "inflation_compound_percentage_increase"])*((100+deposit_df.loc[ind,"inflation_percentage_change"])/100)-100,2)
 print("Desposit history table generated...")
 
 #return final total
