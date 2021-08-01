@@ -3,7 +3,7 @@ import pylab as plt
 
 
 #intro text
-print("\n\n\n\n\n\nWelcome to Local Optimum's Inflation Calculator!")
+print("\n\n\nWelcome to Local Optimum's Inflation Calculator!")
 print("First we'll create a dictionary of deposit dates and amounts.")
 print("Negative deposits can be used to represent withdrawls.")
 print("Only submit *net* deposits per date.")
@@ -23,6 +23,8 @@ import api_cleanup
 from inflation_function_return import *
 
 #graphing section
+print("generating graph")
+print("Once the graph has been closed you will be prompted to save the raw data as table if preferred.")
 plt.figure("infoutput")
 plt.clf()
 plt.plot(deposit_df["year_month"], deposit_df["running_deposit_total"], label="Balance Total")
@@ -34,12 +36,17 @@ plt.show()
 
 
 #optonal export for personal analysis
-df_dump_check =input("\nWould you like to export your monthly change to csv? Y/n: ").lower()
+while True:
+    df_dump_check =input("\nWould you like to export your monthly change to csv? Y/n: ").lower()
+    if df_dump_check == 'y' or df_dump_check =='n':
+        break
+    else:
+        print('Input not recognised.')
 
 if df_dump_check == "y":
-    name =str(input("Please name your output... "))
+    name =str(input("Please name your output: "))
     deposit_df.to_csv(name+".csv", encoding="utf-8") 
-    print("Your CSV has been saved to the project folder as 'personalised_inflation_tracker.csv'.")
+    print(f"Your CSV has been saved to the project folder as '{name}.csv'.")
 
-print("Thank you for testing Local Optimum's inflation tracker, feel free to leave feedback on github!\n\n\n\n\n\n\n\n")
+print("Thank you for testing Local Optimum's inflation tracker, feel free to leave feedback on github!\n\n\n")
 #complete

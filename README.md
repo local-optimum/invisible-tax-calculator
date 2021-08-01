@@ -2,8 +2,8 @@
 
 ## What is it and what does it do?
 The inflation tax calculator enables users to enter deposit dates (in YYYY-MM format) and GBP amounts to create a dictionary of historical deposits.
-This dictionary is used to query the OECD website's historical CPI monthly inflation change stats for the UK.
-The returned table is then used to create a table of running monthly totals modified by the monthly percentage change.
+This dictionary is used to query the OECD website's historical CPI monthly inflation change for the UK.
+This is then used to create a table of running monthly totals modified by the monthly percentage change.
 The output consists of:
 * The total amount deposited
 * The current value of this amount if held as cash
@@ -26,6 +26,7 @@ It requires only a few basic libraries to run:
 * Requests
 * Json
 * Datetime
+* Matplotlib
 
 The data is pulled from this OECD site
 https://stats.oecd.org/Index.aspx?DataSetCode=PRICES_CPI#
