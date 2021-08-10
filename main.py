@@ -15,7 +15,7 @@ print("\nThis tool uses monthly percentage change to inflation in the UK across 
 print("source: https://stats.oecd.org/Index.aspx?DataSetCode=PRICES_CPI#")
 
 
-#use API to pull monthyl inflation history from OECD based on earliest deposit date
+#use API to pull monthly inflation history from OECD based on earliest deposit date
 import api_cleanup
 
 

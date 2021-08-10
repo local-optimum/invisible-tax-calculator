@@ -53,4 +53,5 @@ date_stats = [d["id"] for d in date_obj]
 
 #combine dates and stats into a dataframe for analysis
 monthly_infl_percentage = pd.DataFrame({"year_month": date_stats, "inflation_percentage_change": inf_stats})
-monthly_infl_percentage = monthly_infl_percentage.set_index("year_month")
+monthly_infl_percentage['year_month'] = pd.to_datetime(monthly_infl_percentage['year_month'])
+print(monthly_infl_percentage)
